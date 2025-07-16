@@ -1,0 +1,28 @@
+Given the head of a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list. Return the linked list sorted as well.
+
+
+    ListNode* deleteDuplicates(ListNode* head) {
+        ListNode dummy(0);
+        dummy.next = head;
+        ListNode* prev = &dummy;
+        while(prev ->next){
+        ListNode* curr = prev ->next;
+        ListNode* forr = curr -> next;    
+        bool isdup = false;
+        while(forr && forr->val == curr->val){
+            isdup = true;
+            ListNode* tmp = forr;           
+            forr = forr->next;              
+            delete tmp;            
+        }       
+        if(isdup){
+            prev ->next = forr;
+            delete curr;
+        }
+        else{
+            prev = curr;
+        }
+
+     }
+        return dummy.next;
+    }
