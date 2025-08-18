@@ -14,3 +14,4 @@ It is one of the most popular curated lists for coding interview preparation, co
 ---
 
 ## 📂 Repository Structure  
+Solutions are organized by topic for better readability:  
