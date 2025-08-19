@@ -1,0 +1,45 @@
+Given the head of a singly linked list and two integers left and right where left <= right, reverse the nodes of the list from position left to position right, and return the reversed list.
+
+ListNode* reverse(ListNode* start ){
+    ListNode* prev = NULL;
+    ListNode* curr = start;
+    while(curr){
+        ListNode* forw = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = forw;
+    }
+    return prev;
+}
+public:
+    ListNode* reverseBetween(ListNode* head, int left, int right) {
+        ListNode* prev = NULL;
+        ListNode* curr = head;
+        int cnt = 1;
+        while(cnt != left){
+            prev = curr;
+            curr = curr->next;
+            cnt++;
+        }
+        ListNode* start = curr;
+        //prev is stored 
+        while(cnt != right){
+            curr = curr-> next;
+            cnt++;
+        }
+        ListNode* rest = curr->next;
+        curr->next = NULL;
+
+        ListNode* newhead = reverse(start);
+        if(prev != NULL){
+        prev -> next = newhead;
+        }
+        ListNode* temp = newhead;
+        while(temp->next != NULL){
+            temp = temp->next;
+        }
+        temp ->next = rest;
+        if(left == 1) return newhead;
+        else return head;
+    }
+};
