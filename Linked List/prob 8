@@ -1,0 +1,40 @@
+Given the head of a linked list, rotate the list to the right by k places.
+
+
+class Solution {
+    int getLength(ListNode* head){
+        ListNode* temp = head;
+        int cnt = 0;
+        while(temp){
+            temp = temp -> next;
+            cnt++;
+        }
+        return cnt;
+    }
+
+public:
+    ListNode* rotateRight(ListNode* head, int k) {
+        if(head == NULL || head->next == NULL || k == 0) return head; 
+        int length = getLength(head);
+
+        k = k % length;
+        if (k == 0) return head; 
+        int position = (length - k);
+        int cnt = 1;
+        ListNode* temp = head;
+        while(temp != NULL && cnt < position){
+            temp = temp ->next;
+            cnt++;
+        }
+        ListNode* newHead  = temp -> next;
+        temp -> next = NULL;
+
+        ListNode* temp2 = newHead ;
+
+        while(temp2 -> next != NULL){
+            temp2 = temp2-> next;
+        }        
+        temp2 -> next = head;
+        return newHead;
+    }
+};
