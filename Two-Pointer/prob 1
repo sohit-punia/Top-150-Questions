@@ -3,15 +3,16 @@ A phrase is a palindrome if, after converting all uppercase letters into lowerca
 Given a string s, return true if it is a palindrome, or false otherwise.
 
     bool isPalindrome(string s) {
-       int l = 0;
-       int r = s.size() - 1;
-       while( l < r ){
-        while(l < r && !isalnum(s[l])) l++;
-        while( l < r && !isalnum(s[r])) r--;
-
-        if(tolower(s[l]) != tolower(s[r])) return false;
-        l++;
-        r--;
-       }
-       return true;
+        int left = 0;
+        int right = s.size() -1;
+        while(left < right){
+            if(!isalnum(s[left])) left++;
+            else if(!isalnum(s[right])) right--;
+            else if (tolower(s[left]) != tolower(s[right])) return false;
+            else {
+                left++;
+                right--;
+            }
+        }
+        return true;
     }
