@@ -1,0 +1,24 @@
+134. Gas Station
+
+    int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
+        int gasTotal = 0;
+        int costTotal = 0;
+        for(int val : gas){
+            gasTotal += val;
+        }
+        for(int val : cost){
+            costTotal += val;
+        }
+        if(gasTotal < costTotal){
+            return -1;
+        }
+        int start =0 , currGas =0;
+        for(int i =0; i< gas.size(); i++){
+            currGas += (gas[i] - cost[i]);
+            if(currGas < 0){
+                start = i+1;
+                currGas = 0;
+            }
+        }
+        return start;
+    }
