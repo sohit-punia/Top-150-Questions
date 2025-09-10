@@ -1,0 +1,23 @@
+530. Minimum Absolute Difference in BST
+Given the root of a binary search tree, and an integer k, return the kth smallest value (1-indexed) of all the values of the nodes in the tree.
+
+
+class Solution {
+    void inorder(TreeNode* root , vector<int> &ans){
+        if(root == NULL) return;
+        inorder(root->left , ans);
+        ans.push_back(root->val);
+
+        inorder(root->right , ans);
+    }
+public:
+    int getMinimumDifference(TreeNode* root) {
+        vector<int> v;
+        inorder(root , v);
+        int minDiff = INT_MAX;
+        for (int i = 1; i < v.size(); i++) {
+            minDiff = min(minDiff, v[i] - v[i-1]);
+        }
+        return minDiff;
+    }
+};
