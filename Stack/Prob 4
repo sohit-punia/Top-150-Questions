@@ -1,0 +1,30 @@
+71. Simplify Path
+
+class Solution {
+public:
+    string simplifyPath(string path) {
+        stack<string> st;
+        string dir;
+        stringstream ss(path);
+
+        // Split path by '/'
+        while (getline(ss, dir, '/')) {
+            if (dir == "" || dir == ".") continue; // ignore empty or "."
+            if (dir == "..") {
+                if (!st.empty()) st.pop(); // go back one folder
+            } else {
+                st.push(dir); // valid folder name
+            }
+        }
+
+        // Build simplified path
+        string ans;
+        while (!st.empty()) {
+            ans = "/" + st.top() + ans;
+            st.pop();
+        }
+
+        // If nothing left, return root
+        return ans.empty() ? "/" : ans;
+    }
+};
