@@ -1,0 +1,19 @@
+162. Find Peak Element
+
+    int findPeakElement(vector<int>& nums) {
+        int l = 0;
+        int r = nums.size() -1;
+        while(l < r){
+            int mid = l + (r - l) / 2;
+            // Compare mid with next element
+            if (nums[mid] < nums[mid + 1]){
+                // Peak is in the right half
+                l = mid + 1;
+            }
+            else{
+                // Peak is in the left half (including mid)
+                r = mid;
+            }
+        }
+        return l;
+    }
