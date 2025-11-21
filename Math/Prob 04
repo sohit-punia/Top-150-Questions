@@ -1,0 +1,12 @@
+172. Factorial Trailing Zeroes
+
+When you calculate n! (n factorial), the number of trailing zeroes depends on how many times 10 appears in the multiplication.
+
+    int trailingZeroes(int n) {
+        int ans = 0;
+        while(n > 0){
+            n = n / 5;
+            ans += n;
+        }
+        return ans;
+    }
