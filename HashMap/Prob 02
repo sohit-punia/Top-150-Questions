@@ -1,0 +1,23 @@
+205. Isomorphic Strings
+
+
+    bool isIsomorphic(string s, string t) {
+        if(s.length() != t.length()) return false;
+        // HashMap to store mapping from s -> t
+        unordered_map<char, char> mp1; 
+        // HashMap to store reverse mapping from t -> s
+        unordered_map<char, char> mp2;
+
+        for(int i =0; i < s.length(); i++){
+            char c1 = s[i];
+            char c2 = t[i];
+            // If c1 is already mapped but not to c2 → conflict
+            if(mp1.count(c1) && mp1[c1] != c2) return false;
+            // If c2 is already mapped but not to c1 → conflict
+            if(mp2.count(c2) && mp2[c2] != c1) return false;
+
+            mp1[c1] = c2;
+            mp2[c2] = c1;
+        }
+        return true;
+    }
